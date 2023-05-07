@@ -1,0 +1,64 @@
+$\texttt{\large\color{#5e7ece}知行\tiny合一 \small兼善\large天下 }$
+
+
+
+------------
+
+
+
+## 1. $\texttt{\large\color{#7e6eae}01背包}$
+
+$\textit{\small\color{#7e6eae} 01 Backpack problem}$
+
+
+$\bullet\texttt{\large\color{#3eae3e}01背包普板}$ $\textit{\small\color{#3eae3e} common}$
+
+```cpp
+for(int i=1;i<=n;i++){
+	for(int j=0;j<=m;j++){
+		f[i][j]=f[i-1][j];
+		if(j>=w[i]) f[i][j]=max(f[i][j],f[i-1][j-w[i]]+c[i]);
+	}
+}
+```
+
+$\bullet\texttt{\large\color{#2e5ece}01背包优板}$ $\textit{\small\color{#2e5ece} optimized}$
+
+```cpp
+for(int i=1;i<=n;i++){
+	for(int j=m;j>=w[i];j--){
+		f[j]=max(f[j],f[j-w[i]]+c[i]);
+	}
+}
+```
+
+------------
+
+## 2. $\texttt{\large\color{#7e6eae}完全背包}$
+
+$\textit{\small\color{#7e6eae} Totally backpack problem
+}$
+
+
+$\bullet\texttt{\large\color{#3eae3e}完全背包普板}$ $\textit{\small\color{#3eae3e} common}$
+
+```cpp
+for(int i=1;i<=n;i++){
+	for(int j=0;j<=m;j++){
+		for(int k=0,k*w[i]<=y;k++){
+			f[i][j]=max(f[i][j],f[i-1][j-k*w[i]]+k*c[i]);
+		} 
+	}
+}
+```
+
+$\bullet\texttt{\large\color{#2e5ece}完全背包优板}$ $\textit{\small\color{#2e5ece} optimized}$
+
+```cpp
+for(int i=1;i<=n;i++){
+	for(int j=0;j<=m;j++){
+		f[i][j]=f[i-1][j];
+		if(j>=w[i]) f[i][j]=max(f[i][j],f[i-1][j-w[i]]+c[i]);
+	}
+}
+```
